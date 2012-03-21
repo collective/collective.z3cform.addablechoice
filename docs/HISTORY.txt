@@ -1,13 +1,7 @@
 Changelog
 =========
 
-1.0.1 (2009-09-29)
-------------------
-
-- updated setup.cfg
-
-
-1.0 (2009-09-29)
+0.1 (Unreleased)
 ----------------
 
 * Initial release

@@ -24,7 +24,6 @@ setup(name='collective.z3cform.addablechoice',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
           'plone.app.z3cform',
       ],
       entry_points="""
