@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2012-03-22)
 ----------------
 
 - Edit MANIFEST.in to include profiles dir. [jcbrand]
