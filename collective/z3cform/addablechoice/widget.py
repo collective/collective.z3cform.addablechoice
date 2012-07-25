@@ -1,6 +1,4 @@
 import zope.component
-import zope.interface
-import zope.schema
 import z3c.form
 from z3c.form.i18n import MessageFactory as _
 from Acquisition import aq_inner
@@ -23,10 +21,11 @@ class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
         """Get the value from the request
         """
         val = self.request.get(self.name, u'')
-        val = [v for v in val if v]
-        if val:
+        if isinstance(val, list) or isinstance(val, tuple):
+            val = [v for v in val if v]
             return val[-1]
-        return u''
+        return val
+
 
     def extract(self, default=z3c.form.interfaces.NOVALUE):
         """See z3c.form.interfaces.IWidget.
