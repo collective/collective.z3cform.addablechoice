@@ -15,15 +15,15 @@ empty, as there won't be any previously added values.
 How to use:
 -----------
 
+::
+
     from plone.directives import form
     from collective.z3cform.addablechoice.widget import AddableChoiceFieldWidget
 
 
     class IMyType(form.Schema):
         """ """
-
         product_name = schema.TextLine(
-                title=_(u'label_product_name', default=u'Product Name'),
-            )
+            title=_(u'label_product_name', default=u'Product Name'),
+        )
         form.widget(product_name=AddableChoiceFieldWidget)
-
