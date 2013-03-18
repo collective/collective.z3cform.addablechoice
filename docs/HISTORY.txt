@@ -4,9 +4,8 @@ Changelog
 0.5 (unreleased)
 ----------------
 
-- Fail gracefully when the index for which we want to get the 
-  addable choices is not in the catalog. [jcbrand]
-
+- Fail gracefully when there is no index or now values to choose from.
+  [jcbrand]
 
 0.4 (2012-08-02)
 ----------------

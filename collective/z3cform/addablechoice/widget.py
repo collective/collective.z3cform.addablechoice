@@ -27,7 +27,7 @@ class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
         val = self.request.get(self.name, u'')
         if isinstance(val, list) or isinstance(val, tuple):
             val = [v for v in val if v]
-            return val[-1]
+            return val and val[-1] or []
         return val
 
     def extract(self, default=z3c.form.interfaces.NOVALUE):
