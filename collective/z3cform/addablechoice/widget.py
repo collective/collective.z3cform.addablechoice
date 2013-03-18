@@ -2,8 +2,11 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from z3c.form.i18n import MessageFactory as _
 import interfaces
+import logging
 import z3c.form
 import zope.component
+
+log = logging.getLogger(__name__)
 
 
 class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
@@ -47,7 +50,11 @@ class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
         context = aq_inner(self.context)
         index = self.field.getName()
         catalog = getToolByName(context, 'portal_catalog')
-        values = list(catalog.uniqueValuesFor(index))
+        try:
+            values = list(catalog.uniqueValuesFor(index))
+        except KeyError:
+            log.error(u"Catalog doesn't have an index '%s'" % index)
+            values = []
         values = [v for v in values if v]
 
         added_value = self.getValueFromRequest()
@@ -57,7 +64,6 @@ class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
         options = [{'value': self.noValueToken, 'display': self.promptMessage}]
         for v in values:
             options.append({'value': v, 'display': v})
-        print options
         return options
 
 

@@ -4,7 +4,8 @@ Changelog
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fail gracefully when the index for which we want to get the 
+  addable choices is not in the catalog. [jcbrand]
 
 
 0.4 (2012-08-02)
@@ -28,5 +29,6 @@ Changelog
 0.1 (2012-03-21)
 ----------------
 
-* Initial release [jcbrand]
+- Created [jbeyers]
+- Initial release [jcbrand]
 
