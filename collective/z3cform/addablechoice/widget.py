@@ -1,9 +1,10 @@
-import zope.component
-import z3c.form
-from z3c.form.i18n import MessageFactory as _
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
+from z3c.form.i18n import MessageFactory as _
 import interfaces
+import z3c.form
+import zope.component
+
 
 class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
     """
@@ -26,13 +27,12 @@ class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
             return val[-1]
         return val
 
-
     def extract(self, default=z3c.form.interfaces.NOVALUE):
         """See z3c.form.interfaces.IWidget.
         """
         if (self.name not in self.request and
-            self.name+'-added' not in self.request and
-            self.name+'-empty-marker' in self.request):
+                self.name+'-added' not in self.request and
+                self.name+'-empty-marker' in self.request):
             return default
 
         value = self.getValueFromRequest() or default
@@ -56,14 +56,16 @@ class AddableChoiceWidget(z3c.form.browser.text.TextWidget):
 
         options = [{'value': self.noValueToken, 'display': self.promptMessage}]
         for v in values:
-            options.append({'value': v,'display': v})
+            options.append({'value': v, 'display': v})
         print options
         return options
 
-@zope.component.adapter(zope.schema.TextLine, z3c.form.interfaces.IFormLayer)
+
+@zope.component.adapter(zope.schema.TextLine,
+                        z3c.form.interfaces.IFormLayer)
 @zope.interface.implementer(z3c.form.interfaces.IFieldWidget)
 def AddableChoiceFieldWidget(field, request):
-    """ IFieldWidget factory for AddableChoiceWidget 
+    """ IFieldWidget factory for AddableChoiceWidget
     """
     return z3c.form.widget.FieldWidget(field, AddableChoiceWidget(request))
 
